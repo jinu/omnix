@@ -50,7 +50,6 @@
                         <!-- begin btn-group -->
                         <div class="btn-group ml-auto">
                             <a id="addBtn" class="btn btn-white btn-sm"><i class="fa fa fa-pencil-alt f-s-14 m-r-3 m-r-xs-0 t-plus-1"></i> <span class="hidden-xs">Add</span></a>
-                            <a href="javascript:;" class="btn btn-white btn-sm"><i class="fa fa-times  f-s-14 m-r-3 m-r-xs-0 t-plus-1"></i> <span class="hidden-xs">Delete</span></a>
                         </div>
                         <!-- end btn-group -->
                     </div>
@@ -77,12 +76,13 @@
                                                 <th class="text-nowrap" style="">search</th>
                                                 <th class="text-nowrap" style="">statistic</th>
                                                 <th class="text-nowrap">description</th>
+                                                <th style="width:80px"></th>
                                             </tr>
                                         </thead>
                                         <tbody id="listContent">
                                         </tbody>
                                         <tfoot id="template" style="display:none;">
-                                            <tr>
+                                            <tr key="[[ id ]]">
                                                 <td>[[ id ]]</td>
                                                 <td><a href="/columnInfo/edit/${table.id}/[[ id ]]">[[ name ]]</a></td>
                                                 <td>[[ alias ]]</td>
@@ -90,6 +90,10 @@
                                                 <td>[[ search ]]</td>
                                                 <td>[[ statistics ]]</td>
                                                 <td>[[ description ]]</td>
+                                                <td class="with-btn" nowrap="">
+                                                    <a href="/columnInfo/edit/${table.id}/[[ id ]]" class="btn btn-sm btn-primary width-60 m-r-2">Edit</a>
+                                                    <a class="btn btn-sm btn-white width-60 deleteBtn">Delete</a>
+                                                </td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -145,6 +149,14 @@ $(document).ready(function() {
     $('#addBtn').on('click', function() {
         var url = "/columnInfo/add/" + TABLE_ID;
         location.href=url;
+    });
+    
+    <#-- 삭제 -->
+    $('#listContent').on('click', '.deleteBtn', function() {
+        var id = $(this).closest('tr').attr('key');
+        var url = '/restapi/columnInfo/' + TABLE_ID + '/del/' + id;
+        var returnUrl = '/columnInfo/list/' + TABLE_ID;
+        deleteConfirm('Are you sure?', '삭제후에는 복원이 불가능합니다', url);
     });
 });
 

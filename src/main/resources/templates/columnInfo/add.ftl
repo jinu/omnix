@@ -40,9 +40,11 @@
                         <a href="#" onclick="location='/columnInfo/list/${table.id}'" class="btn btn-white btn-sm"><i class="fas fa-arrow-left f-s-14 m-r-3 m-r-xs-0 t-plus-1"></i> <span class="hidden-xs">List</span></a>
                     </span>
                     
+                    <#if mode=="edit">
                     <span class="pull-right">
                         <a id="deleteBtn" class="btn btn-white btn-sm"><i class="fa fa-times f-s-14 m-r-3 m-r-xs-0 t-plus-1"></i> <span class="hidden-xs">Delete</span></a>
                     </span>
+                    </#if>
                 </div>
                 <!-- end wrapper -->
                 <!-- begin vertical-box-row -->
@@ -154,11 +156,8 @@ var ID = '${table.id}';
 var COLUMN_ID = '${columnId?default(0)}';
 $(document).ready(function() {
 
-    prepareEdit('/restapi/columnInfo/' + ID + '/edit/' + COLUMN_ID);
-
-    $('#save').on('click', function() {
-        $('#form1').submit();
-    });
+    initSettingData('/restapi/columnInfo/' + ID + '/edit/' + COLUMN_ID);
+    initSettingFormBind();
     
     <#-- 취소 -->
     $('#cancel').on('click', function() {
@@ -167,14 +166,9 @@ $(document).ready(function() {
     
     <#-- 삭제 -->
     $('#deleteBtn').on('click', function() {
-        sweetConfirm('Are you sure?', '삭제후에는 복원이 불가능합니다', 'warning', function() {
-            var url = '/restapi/columnInfo/' + ID + '/del/' + COLUMN_ID;
-            $.post(url, function(json) {
-                if (json) {
-                    location.href='/columnInfo/list/' + ID;
-                }
-            });
-        });
+        var url = '/restapi/columnInfo/' + ID + '/del/' + COLUMN_ID;
+        var returnUrl = '/columnInfo/list/' + ID;
+        deleteConfirm('Are you sure?', '삭제후에는 복원이 불가능합니다', url, returnUrl);
     });
     
     
