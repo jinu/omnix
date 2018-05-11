@@ -71,9 +71,11 @@
                         <a href="#" onclick="location='/scriptInfo/list/${tableId?default(0)}'" class="btn btn-white btn-sm"><i class="fas fa-arrow-left f-s-14 m-r-3 m-r-xs-0 t-plus-1"></i> <span class="hidden-xs">List</span></a>
                     </span>
                     
+                    <#if mode=="edit">
                     <span class="pull-right">
                         <a id="deleteBtn" class="btn btn-white btn-sm"><i class="fa fa-times f-s-14 m-r-3 m-r-xs-0 t-plus-1"></i> <span class="hidden-xs">Delete</span></a>
                     </span>
+                    </#if>
                 </div>
                 <!-- end wrapper -->
                 <!-- begin vertical-box-row -->
@@ -164,27 +166,14 @@ $(document).ready(function() {
     });
     
     <#-- 수정모드일때 값 넣기 -->
-    prepareEdit('/restapi/scriptInfo/' + ID + '/edit/' + SCRIPT_ID);
-
-    $('#save').on('click', function() {
-        $('#form1').submit();
-    });
-    
-    <#-- 취소 -->
-    $('#cancel').on('click', function() {
-        location.reload();
-    });
+    initSettingData('/restapi/scriptInfo/' + ID + '/edit/' + SCRIPT_ID);
+    initSettingFormBind();
     
     <#-- 삭제 -->
     $('#deleteBtn').on('click', function() {
-        sweetConfirm('Are you sure?', '삭제후에는 복원이 불가능합니다', 'warning', function() {
-            var url = '/restapi/scriptInfo/' + ID + '/del/' + SCRIPT_ID;
-            $.post(url, function(json) {
-                if (json) {
-                    location.href='/scriptInfo/list/' + ID;
-                }
-            });
-        });
+        var url = '/restapi/scriptInfo/' + ID + '/del/' + SCRIPT_ID;
+        var returnUrl = '/scriptInfo/list/' + ID;
+        deleteConfirm('Are you sure?', '삭제후에는 복원이 불가능합니다', url, returnUrl);
     });
     
     <#-- 저장 -->

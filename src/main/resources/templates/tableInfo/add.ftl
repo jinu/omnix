@@ -26,7 +26,7 @@
                 <li class="breadcrumb-item"><a href="javascript:;">UI Elements</a></li>
                 <li class="breadcrumb-item active">Column Information & Setting</li>
             </ol>
-            <h1 class="page-header">Column Information & Setting <small class="hidden-xs">header small text goes here...</small></h1>
+            <h1 class="page-header">Table Information & Setting <small class="hidden-xs">header small text goes here...</small></h1>
         </div>
         
         <!-- end vertical-box-column -->
@@ -107,27 +107,14 @@ var ID = '${id?default(0)}';
 
 $(document).ready(function() {
 
-    prepareEdit('/restapi/table/edit/' + ID);
-
-    $('#save').on('click', function() {
-        $('#form1').submit();
-    });
-    
-    <#-- 취소 -->
-    $('#cancel').on('click', function() {
-        location.reload();
-    });
+    initSettingData('/restapi/table/edit/' + ID);
+    initSettingFormBind();
     
     <#-- 삭제 -->
     $('#deleteBtn').on('click', function() {
-        sweetConfirm('Are you sure?', '삭제후에는 복원이 불가능합니다', 'warning', function() {
-            var url = '/restapi/table/del/' + ID;
-            $.post(url, function(json) {
-                if (json) {
-                    location.href='/tableInfo/list';
-                }
-            });
-        });
+        var url = '/restapi/table/del/' + ID;
+        var returnUrl = '/tableInfo/list';
+        deleteConfirm('Are you sure?', '삭제후에는 복원이 불가능합니다', url, returnUrl);
     });
     
     <#-- 저장 -->

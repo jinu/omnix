@@ -47,7 +47,6 @@
                         
                         <span class="btn-group ml-auto">
                             <a href="/tableInfo/add" class="btn btn-white btn-sm"><i class="fa fa fa-pencil-alt f-s-14 m-r-3 m-r-xs-0 t-plus-1"></i> <span class="hidden-xs">Add</span></a>
-                            <a href="javascript:;" class="btn btn-white btn-sm"><i class="fa fa-times  f-s-14 m-r-3 m-r-xs-0 t-plus-1"></i> <span class="hidden-xs">Delete</span></a>
                         </span>
                             
                     </div>
@@ -72,17 +71,22 @@
                                                 <th>description</th>
                                                 <th>Column edit</th>
                                                 <th>Script edit</th>
+                                                <th style="width:80px"></th>
                                             </tr>
                                         </thead>
                                         <tbody id="listContent">
                                         </tbody>
                                         <tfoot id="template" style="display:none;">
-                                            <tr>
+                                            <tr key="[[ id ]]">
                                                 <td>[[ id ]]</td>
                                                 <td><a href="/tableInfo/edit/[[ id ]]">[[ name ]]</a></td>
                                                 <td>[[ description ]]</td>
                                                 <td><a href="/columnInfo/list/[[ id ]]">[ move ]</a></td>
                                                 <td><a href="/scriptInfo/list/[[ id ]]">[ move ]</a></td>
+                                                <td class="with-btn" nowrap="">
+                                                    <a href="/tableInfo/edit/[[ id ]]" class="btn btn-sm btn-primary width-60 m-r-2">Edit</a>
+                                                    <a class="btn btn-sm btn-white width-60 deleteBtn">Delete</a>
+                                                </td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -133,6 +137,14 @@ $(document).ready(function() {
             var html = compiled(obj);
             $('#listContent').append(html);
         });
+    });
+    
+    <#-- 삭제 -->
+    $('#listContent').on('click', '.deleteBtn', function() {
+        var id = $(this).closest('tr').attr('key');
+        var url = '/restapi/table/del/' + id;
+        var returnUrl = '/tableInfo/list';
+        deleteConfirm('Are you sure?', '삭제후에는 복원이 불가능합니다', url);
     });
 });
 
