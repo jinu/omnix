@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- configuration file for LogBack (slf4J implementation) See here for more 
+    details: http://gordondickens.com/wordpress/2013/03/27/sawing-through-the-java-loggers/ -->
+<configuration scan="true" scanPeriod="30 seconds">
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    
+    <springProfile name="!production">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </springProfile>
+
+    <springProfile name="production">
+    	 <springProperty scope="context" name="logPath" source="config.log-path" defaultValue=""/>
+    	 
+    	<appender name="omnix" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	        <file>${logPath}/omnix.log</file>
+	        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+	            <fileNamePattern>${logPath}/omnix.log.%i</fileNamePattern>
+	            <minIndex>1</minIndex>
+	            <maxIndex>2</maxIndex>
+	        </rollingPolicy>
+	
+	        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+	            <maxFileSize>10MB</maxFileSize>
+	        </triggeringPolicy>
+	        
+	        <encoder>
+	            <charset>UTF-8</charset>
+	            <pattern>${FILE_LOG_PATTERN}</pattern>
+	        </encoder>
+    </appender>
+    
+        <root level="INFO">
+            <appender-ref ref="omnix" />
+        </root>
+    </springProfile>
+    
+</configuration>
