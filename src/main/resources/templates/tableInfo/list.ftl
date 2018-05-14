@@ -89,6 +89,13 @@
                                                 </td>
                                             </tr>
                                         </tfoot>
+                                        <tfoot class="noList" style="display:none;text-align:center;">
+                                            <tr>
+                                                <td colspan="6" class="center">
+                                                    You can click 'Add' buttons that add more contents.
+                                                </td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                                 <!-- end list-email -->
@@ -130,14 +137,9 @@
 <script>
 var TEMPLATE = $('#template').html();
 $(document).ready(function() {
+
     var url = '/restapi/table/list';
-    $.get(url, function(json) {
-        $.each(json, function(key, obj) {
-            var compiled = _.template(TEMPLATE);
-            var html = compiled(obj);
-            $('#listContent').append(html);
-        });
-    });
+    getListAjaxTemplate(TEMPLATE, $('#listContent'), url);
     
     <#-- 삭제 -->
     $('#listContent').on('click', '.deleteBtn', function() {

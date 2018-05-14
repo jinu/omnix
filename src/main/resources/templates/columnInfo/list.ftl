@@ -96,6 +96,13 @@
                                                 </td>
                                             </tr>
                                         </tfoot>
+                                        <tfoot class="noList" style="display:none;text-align:center;">
+                                            <tr>
+                                                <td colspan="8" class="center">
+                                                    You can click 'Add' buttons that add more contents.
+                                                </td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                                 <!-- end list-email -->
@@ -163,15 +170,8 @@ $(document).ready(function() {
 function getTableList(tableId) {
     var tableId = tableId || ${table.id};
     var url = '/restapi/columnInfo/' + tableId + '/list';
+    getListAjaxTemplate(TEMPLATE, $('#listContent'), url);
     
-    $.get(url, function(json) {
-        $('#listContent').html('');
-        $.each(json, function(key, obj) {
-            var compiled = _.template(TEMPLATE);
-            var html = compiled(obj);
-            $('#listContent').append(html);
-        });
-    });
 }
 </script>
 <@lib.theme />
