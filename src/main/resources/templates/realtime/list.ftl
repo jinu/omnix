@@ -121,7 +121,6 @@ var TEMPLATE = $('#template').html();
 var count = 1;
 var runFlag = false;
 var filter = '';
-var key = '${key}';
 
 $(document).ready(function() {
     $('#start').on('click', function() {
@@ -137,7 +136,7 @@ $(document).ready(function() {
 function stompClientHook(stompClient) {
 
     var compiled = _.template(TEMPLATE);
-	stompClient.subscribe("/topic/realtimeLog/" + key, function(data) {
+	stompClient.subscribe("/topic/realtimeLog/" + JOBID, function(data) {
 		var lists = JSON.parse(data.body);
         var delay = 0;
         var length = lists.length;
@@ -173,7 +172,7 @@ function play() {
     
     runFlag = true;
     filter = $.trim($('#filterText').val());
-    stompClient.send("/app/realtimeLog/register", {}, JSON.stringify({'jobId': key, 'search': filter}));
+    stompClient.send("/app/realtimeLog/register", {}, JSON.stringify({'jobId': JOBID, 'search': filter}));
     window.onbeforeunload = function (e) {
         e = e || window.event;
         stop();

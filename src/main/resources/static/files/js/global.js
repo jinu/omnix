@@ -1,18 +1,15 @@
 /**
  * ajax로 목록 그리기
- * @param template
- * @param targetObj
- * @param url
- * @returns
  */
-function getListAjaxTemplate(template, targetObj, url) {
+function getListAjaxTemplate(template, targetObj, url, params) {
     if (!template) {
         alert('no template');
         return false;
     }
     var compiled = _.template(template);
+    var params = params || {};
     targetObj.html('');
-    $.get(url, function(json) {
+    $.get(url, params, function(json) {
     	 if (json.length > 0) {
 	    	$('tfoot.noList').hide();
 	        $.each(json, function(key, obj) {

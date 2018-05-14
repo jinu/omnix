@@ -10,6 +10,13 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     
+    <script type="text/javascript">
+    
+        var JOBID = '${jobId?long?c}';
+        
+    </script>
+    
+    
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="/files/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
     <link href="/files/plugins/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
@@ -48,6 +55,7 @@
     <#-- websocket -->
     <script type="text/javascript" src="/files/js/webSocket/sockjs-0.3.4.min.js"></script>
     <script type="text/javascript" src="/files/js/webSocket/stomp.min.js"></script>
+    
 </head>
 
 <body>

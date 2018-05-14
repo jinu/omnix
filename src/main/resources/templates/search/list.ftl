@@ -37,9 +37,9 @@
                         <div class="input-group width-md">
                             <input type="text" id="searchText" name="searchText" class="form-control" placeholder="Search query input here">
                             <div class="input-group-append">
-                                <button id="start" type="button" class="btn btn-primary ">
+                                <button id="searchBtn" type="button" class="btn btn-primary ">
                                     <i class="fa fa-search"></i>
-                                    <span class="start">Search</span>
+                                    <span>Search</span>
                                 </button>
                             </div>
                         </div>
@@ -116,10 +116,24 @@
     
 <script>
 var TEMPLATE = $('#template').html();
-var key = '${key}';
+var TABLE_ID = '1';
 
 $(document).ready(function() {
+    $('#searchBtn').on('click', function() {
+        getTableList();
+    });
+    
 });
+
+function getTableList(tableId) {
+    var tableId = tableId || TABLE_ID;
+    var url = '/restapi/search/' + tableId;
+    var params = {
+        'jobId' : JOBID,
+        'query' : $('#searchText').val()
+    }
+    getListAjaxTemplate(TEMPLATE, $('#listContent'), url, params);
+}
 
 
 
