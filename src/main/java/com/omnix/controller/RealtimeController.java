@@ -12,7 +12,8 @@ public class RealtimeController {
 	@RequestMapping("/list")
 	public String list(ModelMap modelMap) {
 		
-		String key = RandomStringUtils.randomAlphabetic(10);
+		//String key = RandomStringUtils.randomAlphabetic(10);
+		String key = RandomStringUtils.randomNumeric(10);
 		modelMap.addAttribute("key", key);
 		
 		return "/realtime/list";

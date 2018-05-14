@@ -124,7 +124,7 @@
                             <i class="fa fa-chevron-right f-s-14 t-plus-1"></i>
                         </button>
                     </div>
-                    <div class="m-t-5 text-inverse f-w-600">1,232 messages</div>
+                    <div class="m-t-5 text-inverse f-w-600">Total <span id="totalCount">-</span></div>
                 </div>
                 <!-- end wrapper -->
             </div>

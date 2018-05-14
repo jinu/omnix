@@ -40,8 +40,8 @@
                         <li><a href="index_v2.html">Dashboard v2</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="/columnInfo/list">
+                <li class="<#if depth1 == "search">active</#if>">
+                    <a href="/search/list">
                         <i class="fa fa-search"></i>
                         <span>Search
                     </a>

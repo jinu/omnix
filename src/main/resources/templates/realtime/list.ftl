@@ -34,29 +34,17 @@
                 <div class="wrapper bg-silver-lighter">
                     <!-- begin btn-toolbar -->
                     <div class="btn-toolbar">
-                        <div class="btn-group m-r-5">
-                            <a href="javascript:;" class="p-t-5 pull-left m-r-3 m-t-2" data-click="email-select-all">
-                                <i class="far fa-square fa-fw text-muted f-s-16 l-minus-2"></i>
-                            </a>
-                        </div>
-                        <!-- begin btn-group -->
-                        <div class="btn-group m-r-5">
-                            <button class="btn btn-sm btn-white"><i class="fa fa-redo f-s-14 t-plus-1"></i></button>
-                        </div>
-                        <!-- end btn-group -->
-                        
-                            
-                            <div class="input-group">
-                                <input type="text" id="filterText" name="filterText" class="form-control" placeholder="Filtering text input here">
-                                <div class="input-group-append">
-                                    <button id="start" type="button" class="btn btn-primary ">
-                                        <i class="fa fa-play start"></i>
-                                        <i class="fa fa-pause stop" style="display:none"></i>
-                                        <span class="start">Start</span>
-                                        <span class="stop" style="display:none">Stop</span>
-                                    </button>
-                                </div>
+                        <div class="input-group">
+                            <input type="text" id="filterText" name="filterText" class="form-control" placeholder="Filtering text input here">
+                            <div class="input-group-append">
+                                <button id="start" type="button" class="btn btn-primary ">
+                                    <i class="fa fa-play start"></i>
+                                    <i class="fa fa-pause stop" style="display:none"></i>
+                                    <span class="start">Start</span>
+                                    <span class="stop" style="display:none">Stop</span>
+                                </button>
                             </div>
+                        </div>
                     </div>
                     <!-- end btn-toolbar -->
                 </div>
@@ -111,7 +99,7 @@
                             <i class="fa fa-chevron-right f-s-14 t-plus-1"></i>
                         </button>
                     </div>
-                    <div class="m-t-5 text-inverse f-w-600">1,232 messages</div>
+                    <div class="m-t-5 text-inverse f-w-600"></div>
                 </div>
                 <!-- end wrapper -->
             </div>

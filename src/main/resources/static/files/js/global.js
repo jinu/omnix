@@ -22,6 +22,7 @@ function getListAjaxTemplate(template, targetObj, url) {
     	 } else {
 	    	$('tfoot.noList').show();
     	 }
+    	 $('#totalCount').text(json.length);
     });
    
 }

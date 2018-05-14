@@ -17,7 +17,7 @@ import com.omnix.util.SearchUtils;
 
 @Controller
 @RequestMapping("/restapi/search")
-public class SearchController {
+public class SearchRestController {
 	@Autowired
 	private IndexSearchManager indexSearchManager;
 
