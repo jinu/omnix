@@ -14,7 +14,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "parser_info")
+@Table(name = "PARSER_INFO")
 public class ParserInfo {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

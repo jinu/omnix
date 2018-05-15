@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "table_schema")
+@Table(name = "TABLE_SHCEMA")
 public class TableSchema {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "mapping_info")
+@Table(name = "MAPPING_INFO")
 public class MappingInfo {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

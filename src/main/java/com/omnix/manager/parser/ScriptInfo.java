@@ -21,7 +21,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "script_info", uniqueConstraints = { @UniqueConstraint(columnNames = { "table_id", "name" }) })
+@Table(name = "SCRIPT_INFO", uniqueConstraints = { @UniqueConstraint(columnNames = { "table_id", "name" }) })
 public class ScriptInfo {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

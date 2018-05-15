@@ -20,7 +20,7 @@ import org.hibernate.annotations.OnDeleteAction;
  * column Info
  */
 @Entity
-@Table(name = "column_info", uniqueConstraints = { @UniqueConstraint(columnNames = { "table_id", "name" }) })
+@Table(name = "COLUMN_INFO", uniqueConstraints = { @UniqueConstraint(columnNames = { "table_id", "name" }) })
 public class ColumnInfo {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
