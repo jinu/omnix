@@ -64,7 +64,8 @@ public class IndexManager {
 	public static final double RAM_BUFFER_SIZE = 16.0;
 
 	private static final AtomicBoolean CLOSE_FLAG = new AtomicBoolean(false);
-
+	public static final AtomicBoolean INIT = new AtomicBoolean();
+	
 	/** Logger */
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -147,6 +148,8 @@ public class IndexManager {
 		}
 
 		indexCache = cache;
+		
+		INIT.set(true);
 	}
 
 	public void addIndex(long tableId, String dateKey, List<Document> documents) throws IOException {

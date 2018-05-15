@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -36,7 +37,8 @@ public class ColumnInfoManager {
 	public static final Map<Long, Map<String, ColumnInfo>> COLUMNINFO_CACHE = new ConcurrentHashMap<>();
 	/** Logger */
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
-
+	public static final AtomicBoolean INIT = new AtomicBoolean();
+	
 	@PostConstruct
 	public void init() {
 		tableSchemaManager.init();
@@ -53,6 +55,8 @@ public class ColumnInfoManager {
 		parserInfoManager.init();
 
 		logManager.init();
+		
+		INIT.set(true);
 	}
 
 	public static ColumnInfo getColumnInfoCache(long tableId, String columnName) {

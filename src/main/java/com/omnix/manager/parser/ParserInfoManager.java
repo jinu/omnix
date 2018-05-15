@@ -135,4 +135,8 @@ public class ParserInfoManager {
 		}
 		return ipList;
 	}
+	
+	public long getScriptId(String ip) {
+		return parserInfoCache.get(ip);
+	}
 }

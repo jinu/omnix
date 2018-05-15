@@ -9,6 +9,9 @@ CREATE TABLE luzern.table_shcema
   CONSTRAINT uk_f05w8no8sdp7wp6igbgcanebm UNIQUE (name)
 );
 
+INSERT INTO luzern.table_shcema(id, description, name, predefine) VALUES ('1', 'Default Table', 'default', true);
+SELECT setval('luzern.table_shcema_id_seq', 10, true);
+
 CREATE TABLE luzern.column_info
 (
   id bigserial NOT NULL,
@@ -77,5 +80,17 @@ CREATE TABLE luzern.parser_info
   CONSTRAINT uk_l0y073irtr3yvvuruw0o1avjv UNIQUE (ip)
 );
 
-INSERT INTO luzern.table_shcema(description, name, predefine) VALUES ('Default Table', 'default', true);
-
+CREATE TABLE luzern.filemonitoring_info
+(
+  id bigserial NOT NULL,
+  path character varying(255) NOT NULL,
+  description character varying(255),
+  modify_date timestamp without time zone NOT NULL,
+  enable boolean,
+  script_info_id bigint NOT NULL,
+  CONSTRAINT filemonitoring_info_pkey PRIMARY KEY (id),
+  CONSTRAINT filemonitoring_info_fkey1 FOREIGN KEY (script_info_id)
+      REFERENCES luzern.script_info (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE,
+  CONSTRAINT filemonitoring_info_unique UNIQUE (path)
+);
