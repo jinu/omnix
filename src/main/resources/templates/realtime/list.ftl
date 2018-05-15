@@ -73,9 +73,8 @@
                                         <tfoot id="template" style="display:none;">
                                             <tr id="log_[[ id ]]">
                                                 <td>[[ id ]]</td>
-                                                <td>[[ time ]]</td>
                                                 <td>[[ ip ]]</td>
-                                                <td>[[ log ]]</td>
+                                                <td>[[ text ]]</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -143,11 +142,13 @@ function stompClientHook(stompClient) {
         var tick = 1000 / length;
         
         $.each(lists, function(i, obj) {
+        	
             setTimeout(function() {
                 if (!runFlag) {
                     return;
                 }
-                var log = obj.log;
+                obj.id = count;
+                var log = obj.text;
                 if (filter !== '') {
                     log = log.replace(new RegExp(filter, 'gi'), '<span class="highlight">' + filter + '</span>');
                 }
@@ -190,14 +191,11 @@ function play() {
 function stop() {
     $('.start').show();
     $('.stop').hide();
-    $('#listContent').html('');
     
     runFlag = false;
     window.onbeforeunload = null;
     
-    stompClient.send("/app/realtimeLog/unRegister", {}, JSON.stringify({'jobId': key}));
-    
-    
+    stompClient.send("/app/realtimeLog/unRegister", {}, JSON.stringify({'jobId': JOBID}));
 }
 
 
