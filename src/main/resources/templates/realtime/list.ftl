@@ -63,8 +63,7 @@
                                         <thead>
                                             <tr>
                                                 <th style="width:40px">#</th>
-                                                <th style="width:200px">로그 수신 시간</th>
-                                                <th>IP</th>
+                                                <th style="width:100px">IP</th>
                                                 <th>Detail log</th>
                                             </tr>
                                         </thead>
