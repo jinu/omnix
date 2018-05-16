@@ -1,8 +1,6 @@
 package com.omnix.manager.websocket;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -146,12 +144,12 @@ public class WebSocketManager {
 			return;
 		}
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("key", key);
-		map.put("payload", payload);
+		String message = JsonUtils.fromObjInline(payload);
 		
-		String message = JsonUtils.fromObjInline(map);
-		webServerBridgeHandler.sendMessage(message);
+		StringBuilder builder = new StringBuilder();
+		builder.append(key).append("`").append(message);
+		
+		webServerBridgeHandler.sendMessage(builder.toString());
 	}
 
 	protected void applyConnectionOptions(ServerBootstrap bootstrap) {
