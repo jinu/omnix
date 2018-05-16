@@ -32,6 +32,9 @@ public class Config {
 	/** 파일 모니터링 경로 */
 	private String fileMonitoringPath;
 
+	/** web bridge 포트 */
+	private int webBridgePort;
+
 	public String getPath() {
 		return path;
 	}
@@ -112,4 +115,12 @@ public class Config {
 		this.fileMonitoringPath = fileMonitoringPath;
 	}
 
+	public int getWebBridgePort() {
+		return webBridgePort;
+	}
+
+	public void setWebBridgePort(int webBridgePort) {
+		this.webBridgePort = webBridgePort;
+	}
+	
 }
