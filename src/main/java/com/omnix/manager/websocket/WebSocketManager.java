@@ -147,7 +147,7 @@ public class WebSocketManager {
 		String message = JsonUtils.fromObjInline(payload);
 		
 		StringBuilder builder = new StringBuilder();
-		builder.append(key).append("`").append(message);
+		builder.append(key).append("`").append(message).append("\n");;
 		
 		webServerBridgeHandler.sendMessage(builder.toString());
 	}
